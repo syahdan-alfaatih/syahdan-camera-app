@@ -1,4 +1,3 @@
-/* Mengatur dasar dari seluruh halaman */
 body {
     font-family: 'Poppins', sans-serif;
     color: #e0e0e0;
@@ -9,70 +8,59 @@ body {
     align-items: center;
     min-height: 100vh;
     overflow: hidden;
-    /* Menambahkan transisi untuk body jika diperlukan */
     transition: all 0.5s ease-in-out;
 }
 
-/* --- KONDISI AWAL (KECIL & TENGAH) --- */
 .container {
     position: relative;
     z-index: 1;
     display: flex;
     width: 90%;
-    /* Lebar maksimal saat aplikasi belum aktif */
     max-width: 550px; 
-    /* Tinggi disesuaikan konten */
     height: auto; 
-    
     background: rgba(28, 11, 59, 0.25);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    
     border-radius: 20px;
     border: 1px solid rgba(30, 235, 216, 0.2);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     align-items: center; 
     
-    /* INTI ANIMASI: Transisi untuk semua perubahan */
     transition: max-width 0.6s ease-in-out, height 0.6s ease-in-out;
 }
 
 .left-panel {
-    flex-basis: 100%; /* Memenuhi container saat mode awal */
-    padding: 50px; /* Padding merata */
-    text-align: center; /* Teks jadi ke tengah */
+    flex-basis: 100%;
+    padding: 50px; 
+    text-align: center; 
     transition: all 0.6s ease-in-out;
 }
 
 .right-panel {
-    flex-basis: 0; /* Lebar 0 saat tidak aktif */
-    overflow: hidden; /* Sembunyikan konten yang meluber */
-    opacity: 0; /* Sepenuhnya transparan */
-    padding: 0; /* Hilangkan padding */
+    flex-basis: 0; 
+    overflow: hidden; 
+    opacity: 0; 
+    padding: 0; 
     transition: all 0.6s ease-in-out;
 }
 
-/* --- KONDISI AKTIF (KETIKA CLASS 'app-active' DITAMBAHKAN) --- */
 
 .container.app-active {
-    max-width: 1200px; /* Lebar kembali normal */
-    height: 80vh; /* Tinggi kembali normal */
+    max-width: 1200px;
+    height: 80vh; 
 }
 
 .container.app-active .left-panel {
-    flex-basis: 40%; /* Kembali ke proporsi awal (mirip flex: 1) */
-    text-align: left; /* Teks kembali ke kiri */
-    padding: 40px 20px 40px 50px; /* Padding kembali normal */
+    flex-basis: 40%; 
+    text-align: left; 
+    padding: 40px 20px 40px 50px; 
 }
 
 .container.app-active .right-panel {
-    flex-basis: 60%; /* Kembali ke proporsi awal (mirip flex: 1.5) */
-    opacity: 1; /* Kembali terlihat */
-    padding: 40px 50px 40px 20px; /* Padding kembali normal */
+    flex-basis: 60%; 
+    opacity: 1; 
+    padding: 40px 50px 40px 20px; 
 }
-
-
-/* -- SISA KODE TIDAK BANYAK BERUBAH -- */
 
 .welcome-text h1 {
     font-size: 2.8rem;
@@ -81,10 +69,9 @@ body {
     color: #1eebd8;
     margin-top: -15px;
     text-shadow: 0 0 10px rgba(30, 235, 216, 0.3);
-    transition: font-size 0.5s ease-in-out; /* Tambah transisi ukuran font */
+    transition: font-size 0.5s ease-in-out; 
 }
 
-/* Sedikit mengecilkan H1 di mode aktif agar proporsional */
 .container.app-active .welcome-text h1 {
     font-size: 2.5rem; 
 }
@@ -99,14 +86,14 @@ body {
 
 .video-container {
     width: 100%;
-    height: 100%; /* Dibuat 100% agar fleksibel */
+    height: 100%; 
     aspect-ratio: 16 / 9;
     background-color: #000;
     border-radius: 12px;
     overflow: hidden;
     border: 1px solid rgba(30, 235, 216, 0.4);
     line-height: 0;
-    display: flex; /* Agar gambar di dalamnya bisa diatur */
+    display: flex;
     align-items: center;
     justify-content: center;
 }
@@ -161,18 +148,17 @@ body {
     margin-top: 25px;
     display: flex;
     gap: 15px; 
-    /* BARU: Memusatkan tombol di mode awal */
     justify-content: center;
     transition: justify-content 0.6s ease-in-out;
 }
-/* Mengembalikan posisi tombol saat mode aktif */
+
 .container.app-active .button-container {
     justify-content: flex-start;
 }
 
 .control-btn {
     flex-grow: 1; 
-    max-width: 200px; /* Batasi lebar tombol agar tidak terlalu besar di mode awal */
+    max-width: 200px; 
     padding: 12px 20px;
     font-size: 1rem;
     font-weight: 600;
@@ -211,24 +197,20 @@ body {
     transform: scale(0.98) translateY(0);
 }
 
-/* -- BARU: Style untuk Tombol Disabled -- */
-
 .control-btn:disabled {
-    cursor: not-allowed; /* Ganti kursor jadi tanda "tidak diizinkan" */
-    transform: none; /* Hilangkan efek hover */
-    box-shadow: none; /* Hilangkan efek shadow */
+    cursor: not-allowed; 
+    transform: none;
+    box-shadow: none;
 }
 
-/* Style disabled untuk tombol Start */
 #start-btn:disabled {
     background-color: #1eebd8;
-    opacity: 0.4; /* Redupkan tombolnya */
+    opacity: 0.4;
 }
 
-/* Style disabled untuk tombol Stop */
 #stop-btn:disabled {
     color: #FF7EB9;
     border-color: #FF7EB9;
-    opacity: 0.4; /* Redupkan tombolnya */
-    background-color: transparent; /* Pastikan background tetap transparan */
+    opacity: 0.4;
+    background-color: transparent; 
 }
