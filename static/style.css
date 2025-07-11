@@ -1,0 +1,234 @@
+/* Mengatur dasar dari seluruh halaman */
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    /* Menambahkan transisi untuk body jika diperlukan */
+    transition: all 0.5s ease-in-out;
+}
+
+/* --- KONDISI AWAL (KECIL & TENGAH) --- */
+.container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    width: 90%;
+    /* Lebar maksimal saat aplikasi belum aktif */
+    max-width: 550px; 
+    /* Tinggi disesuaikan konten */
+    height: auto; 
+    
+    background: rgba(28, 11, 59, 0.25);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    
+    border-radius: 20px;
+    border: 1px solid rgba(30, 235, 216, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    align-items: center; 
+    
+    /* INTI ANIMASI: Transisi untuk semua perubahan */
+    transition: max-width 0.6s ease-in-out, height 0.6s ease-in-out;
+}
+
+.left-panel {
+    flex-basis: 100%; /* Memenuhi container saat mode awal */
+    padding: 50px; /* Padding merata */
+    text-align: center; /* Teks jadi ke tengah */
+    transition: all 0.6s ease-in-out;
+}
+
+.right-panel {
+    flex-basis: 0; /* Lebar 0 saat tidak aktif */
+    overflow: hidden; /* Sembunyikan konten yang meluber */
+    opacity: 0; /* Sepenuhnya transparan */
+    padding: 0; /* Hilangkan padding */
+    transition: all 0.6s ease-in-out;
+}
+
+/* --- KONDISI AKTIF (KETIKA CLASS 'app-active' DITAMBAHKAN) --- */
+
+.container.app-active {
+    max-width: 1200px; /* Lebar kembali normal */
+    height: 80vh; /* Tinggi kembali normal */
+}
+
+.container.app-active .left-panel {
+    flex-basis: 40%; /* Kembali ke proporsi awal (mirip flex: 1) */
+    text-align: left; /* Teks kembali ke kiri */
+    padding: 40px 20px 40px 50px; /* Padding kembali normal */
+}
+
+.container.app-active .right-panel {
+    flex-basis: 60%; /* Kembali ke proporsi awal (mirip flex: 1.5) */
+    opacity: 1; /* Kembali terlihat */
+    padding: 40px 50px 40px 20px; /* Padding kembali normal */
+}
+
+
+/* -- SISA KODE TIDAK BANYAK BERUBAH -- */
+
+.welcome-text h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #1eebd8;
+    margin-top: -15px;
+    text-shadow: 0 0 10px rgba(30, 235, 216, 0.3);
+    transition: font-size 0.5s ease-in-out; /* Tambah transisi ukuran font */
+}
+
+/* Sedikit mengecilkan H1 di mode aktif agar proporsional */
+.container.app-active .welcome-text h1 {
+    font-size: 2.5rem; 
+}
+
+
+.welcome-text p {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: #d1d1d1;
+}
+
+.video-container {
+    width: 100%;
+    height: 100%; /* Dibuat 100% agar fleksibel */
+    aspect-ratio: 16 / 9;
+    background-color: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(30, 235, 216, 0.4);
+    line-height: 0;
+    display: flex; /* Agar gambar di dalamnya bisa diatur */
+    align-items: center;
+    justify-content: center;
+}
+
+#video_feed {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background-color: #000;
+    border: none;
+}
+
+.selection-container {
+    margin-top: 35px; 
+}
+
+.selection-container label {
+    display: block;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 10px;
+    color: #d1d1d1;
+}
+
+.selection-container select {
+    width: 100%;
+    padding: 12px;
+    background-color: rgba(18, 2, 37, 0.5);
+    color: #e0e0e0;
+    border: 1px solid rgba(30, 235, 216, 0.4);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.selection-container select:focus {
+    outline: none;
+    border-color: #1eebd8;
+    box-shadow: 0 0 15px rgba(30, 235, 216, 0.3);
+}
+
+.selection-container select:disabled {
+    background-color: rgba(40, 40, 40, 0.5);
+    color: #888;
+    cursor: not-allowed;
+}
+
+.button-container {
+    margin-top: 25px;
+    display: flex;
+    gap: 15px; 
+    /* BARU: Memusatkan tombol di mode awal */
+    justify-content: center;
+    transition: justify-content 0.6s ease-in-out;
+}
+/* Mengembalikan posisi tombol saat mode aktif */
+.container.app-active .button-container {
+    justify-content: flex-start;
+}
+
+.control-btn {
+    flex-grow: 1; 
+    max-width: 200px; /* Batasi lebar tombol agar tidak terlalu besar di mode awal */
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#start-btn {
+    background-color: #1eebd8;
+    color: #120225;
+}
+
+#start-btn:hover {
+    background-color: #82fcf0;
+    box-shadow: 0 0 20px rgba(30, 235, 216, 0.5);
+    transform: translateY(-2px);
+}
+
+#stop-btn {
+    background-color: transparent;
+    color: #FF7EB9;
+    border-color: #FF7EB9;
+}
+
+#stop-btn:hover {
+    background-color: #FF7EB9;
+    color: #120225;
+    box-shadow: 0 0 20px rgba(255, 126, 185, 0.5);
+    transform: translateY(-2px);
+}
+
+.control-btn:active {
+    transform: scale(0.98) translateY(0);
+}
+
+/* -- BARU: Style untuk Tombol Disabled -- */
+
+.control-btn:disabled {
+    cursor: not-allowed; /* Ganti kursor jadi tanda "tidak diizinkan" */
+    transform: none; /* Hilangkan efek hover */
+    box-shadow: none; /* Hilangkan efek shadow */
+}
+
+/* Style disabled untuk tombol Start */
+#start-btn:disabled {
+    background-color: #1eebd8;
+    opacity: 0.4; /* Redupkan tombolnya */
+}
+
+/* Style disabled untuk tombol Stop */
+#stop-btn:disabled {
+    color: #FF7EB9;
+    border-color: #FF7EB9;
+    opacity: 0.4; /* Redupkan tombolnya */
+    background-color: transparent; /* Pastikan background tetap transparan */
+}
