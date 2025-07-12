@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>OpenCV Face Detector by Syahdan</title>
 
-    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -32,10 +32,15 @@
 <body>
     <div id="vanta-bg"></div>
 
+    <div style="display: none;">
+        <video id="video-input" autoplay playsinline></video>
+        <canvas id="canvas-output"></canvas>
+    </div>
+
     <div class="container">
         <div class="left-panel">
             <div class="welcome-text">
-                <h1>Welcome!</h1>
+                <h1 id="welcome-text-h1">Welcome!</h1>
                 <p>
                 This app lets you run various interactive, camera-based programs directly from your browser.    
                 </p>
@@ -63,23 +68,12 @@
             </div>
         </div>
     </div>
-
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.topology.min.js"></script>
-    <script>
-        VANTA.TOPOLOGY({
-        el: "#vanta-bg",
-        mouseControls: true,
-        touchControls: true,
-        gyroControls: false,
-        minHeight: 200.00,
-        minWidth: 200.00,
-        scale: 1.00,
-        scaleMobile: 1.00,
-        color: 0x1eebd8,
-        backgroundColor: 0x120225
-        });
-    </script>
-    <script src="static/main.js"></script>
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
 </body>
 </html>
